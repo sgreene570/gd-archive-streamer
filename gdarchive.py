@@ -3,7 +3,7 @@ from internetarchive import *
 import random
 
 # Constants
-SEARCH_STRING = "Grateful Dead"
+SEARCH_STRING = "collection:(GratefulDead AND stream_only)"
 
 def main():
     s = get_archive_session()
@@ -14,9 +14,7 @@ def main():
     index = random.randint(0, resultCount)
 
     identifier = list(search)[index]["identifier"]
-    print(identifier)
-    download(identifier)
-
+    download(identifier, glob_pattern="*mp3", dry_run=True, ignore_errors=True)
 
 def get_archive_session():
     s = get_session()
