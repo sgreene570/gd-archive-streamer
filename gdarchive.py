@@ -17,7 +17,7 @@ def main():
     search_string = "collection:(GratefulDead AND stream_only)"
 
     if args.query is not None:
-        # Modify global search var
+        # Modify search_string if passed via args
         search_string = args.query
 
     if args.verbose:
@@ -30,6 +30,7 @@ def main():
     if args.verbose:
         print(url)
 
+    # If silent mode is not enabled, stream the track
     if not args.silent:
         play_file(url)
 
