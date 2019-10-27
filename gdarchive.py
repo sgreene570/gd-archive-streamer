@@ -62,7 +62,11 @@ def find_file(session, search_string):
 
 def play_file(trackUrl, repeat):
     # For now, use ffplay in terminal
-    os.system("ffplay -autoexit" + " " + trackUrl + " > /dev/null 2>&1")
+    try:
+        os.system("ffplay -autoexit" + " " + trackUrl + " > /dev/null 2>&1")
+    except OSError:
+        print("Error using ffplay, is ffmpeg installed?")
+        return
     # Run program again if repeat flag enabled
     if repeat:
         main()
